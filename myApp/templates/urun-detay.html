@@ -1,0 +1,77 @@
+{% extends "Alibaba.html" %}
+{% load static %}
+
+{% block content %}
+<style>   
+    footer{
+          margin-top: 375px;
+    }
+    .bg {
+      background-color: #fff;
+      
+    } 
+    .container1 {
+       width:   500px ;
+       text-align: center;
+       margin-left: 930px;
+    }
+    @media screen and (max-width: 768px) {
+      .container1 {
+        margin: 0;
+        width: 100%;
+      }
+    }
+</style>
+
+<div class="container bg">
+      <div class="row">      
+           <div class="col-12">            
+              <div class="card mb-3 mt-3">
+                <div class="row">
+                    <div class="col-4">
+                        <img src="{{urundetay.resim.url}}" width="60%" height="250px" class="card-img-top" alt="...">
+                    </div>
+                    <div class="col-8">
+                        <div class="card-body mt-3">
+                          <div class="row">
+                            <div class="col-md-6">
+                              <h5 class="card-title">{{urundetay.isim}}</h5> 
+                              <p class="card-text">{{urundetay.aciklama}}</p>
+                              <span>{{urundetay.fiyat}} TL</span>
+                              
+                           </div>
+                           <div class="col-md-6">
+                              <form action="" method="POST" class="aling-items-center">
+                                {% csrf_token %}
+                                <input type="number" name="number" value="1" min="1" class="py-2 form-control d-inline-flex" style="width : 70px">
+                                <button type="submit" name="ekle" class="btn">Sepete Ekle</button> 
+                              </form>   
+                                  <br>
+                                  <strong>Stok : {{urundetay.stok}} Adet</strong>
+                           </div> 
+                          </div>                                                           
+                         </div>
+                    </div>
+                </div>        
+             </div>
+           </div>     
+      </div>  
+</div>
+<div class="container text-center mt-5">
+    {% for yorum in yorumlar %}
+       <h4>{{ yorum.kullanici }} | <small> {{ yorum.yorumTarih }} </small></h4>
+       <p>{{ yorum.yorum }}</p>
+    {% endfor %}
+</div>
+<div class="container1 mt-5">
+      {% load crispy_forms_tags %}
+       <form method="POST" action="">
+        {% csrf_token %} 
+        {{ form|crispy }} 
+        <input type="submit" name="yorum" class="btn btn-primary mb-3" value="Yorum Ekle">
+       </form>
+</div>
+
+
+
+{% endblock content %}

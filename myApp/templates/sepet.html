@@ -1,0 +1,108 @@
+{% extends "Alibaba.html" %}
+{% load static %}
+
+{% block content %}
+<style>   
+    footer{
+          margin-top: 375px;
+    }
+    .bg {
+      background-color: #fff;
+      
+    } 
+</style>
+
+
+<div class="container">
+    <div class="row">
+        {% if urunler %}
+        
+        <a class="btn mb-5" href="{% url 'Alibaba' %}" > Alışveriş'e devam etmek için tıklayınız.. </a>
+          {% for i in urunler %}
+            
+                <div class="col-md-6 col-12">   
+                    <div class="card mb-3" >
+                        <div class="row ">
+                        <div class="col-md-4 ">
+                            <img src="{{ i.urun.resim.url }}" class="img-fluid rounded-start"  width="100%">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                            <h5 class="card-title"> {{ i.urun.isim }} </h5>
+                            <p class="card-text">Tutar {{ i.sepetFiyat }} </p>
+                            <p class="card-text">Adet {{ i.sepetAdet }} </p>
+                            
+                            <form action="" method="POST" class="aling-items-center ">
+                                {% csrf_token %}
+                                <input type="number" name="number{{ i.id }}" value="{{ i.adet }}" min="0" class="py-2 form-control d-inline-flex" style="width : 70px">
+                                <button style="max-width: 100px;" type="submit" class="btn mb-1">Güncelle</button> 
+                                <a class="btn mb-1" href="{% url 'delete' i.id %}">X</a>
+                            </form> 
+                            
+                            </div>
+                        </div>
+                     </div>
+                    </div>
+                </div>
+          {% endfor %}
+        <h2 class="text-center">Toplam Fiyat {{ toplamFiyat }}</h2>
+        <button class="btn mt-5 odeme">Ödeme İşlermleri</button>
+        <div class="adres">
+                <form class="row">
+                    <div class="col-md-6 ">
+                    <label for="inputEmail4" class="form-label">Card Number</label>
+                    <input type="email" class="form-control" id="inputEmail4">
+                    </div>
+                    <div class="col-md-6 ">
+                    <label for="inputPassword4" class="form-label">Card Password</label>
+                    <input type="password" class="form-control" id="inputPassword4">
+                    </div>
+                    <div class="col-12">
+                    <label for="inputAddress" class="form-label">Address</label>
+                    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                    </div>
+                    <div class="col-12 ">
+                    <label for="inputAddress2" class="form-label">Address 2</label>
+                    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                    </div>
+                    <div class="col-md-6 ">
+                    <label for="inputCity" class="form-label">City</label>
+                    <input type="text" class="form-control" id="inputCity">
+                    </div>
+                    <div class="col-md-4 ">
+                    <label for="inputState" class="form-label">State</label>
+                    <select id="inputState" class="form-select">
+                        <option selected>Choose...</option>
+                        <option>...</option>
+                    </select>
+                    </div>
+                    <div class="col-md-2 ">
+                    <label for="inputZip" class="form-label">Zip</label>
+                    <input type="text" class="form-control" id="inputZip">
+                    </div>
+                    <div class="col-12 ">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck">
+                        <label class="form-check-label" for="gridCheck">
+                        Check me out
+                        </label>
+                    </div>
+                    </div>
+                    <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Sign in</button>
+                    </div>
+                </form>
+        </div>
+
+        {% else %}
+        <h3 class="text-center">Sepetizde Ürün Bulunmamaktadır</h3>
+        {% endif %}
+        
+
+            
+    </div>
+</div>
+
+
+
+{% endblock content %}

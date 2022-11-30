@@ -1,0 +1,31 @@
+{% extends "Alibaba.html" %}
+{% load static %}
+
+{% block content %}
+<style>   
+    footer{
+          margin-top: 375px;
+    }
+    .bg {
+      background-color: #fff;
+      
+    } 
+    form {
+      width: 50%;
+    }
+    @media screen and (max-width: 768px) {
+      form {
+        width: 90% !important;
+      }
+    }
+</style>
+
+<div class="container">
+    <form method="POST" enctype="multipart/form-data" class=" m-auto border mt-5 p-4">
+        {% csrf_token  %}
+        {{form}}
+        <input type="submit" value="Ürün Ekle" class="btn btn-primary mt-2">
+    </form>
+  </div>
+
+{% endblock content %}

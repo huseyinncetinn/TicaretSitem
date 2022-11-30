@@ -1,0 +1,62 @@
+{% extends "Alibaba.html" %}
+{% load static %}
+
+{% block content %}
+<style>   
+    footer{
+          margin-top: 375px;
+    }
+    .bg {
+      background-color: #fff;   
+    }
+    .delete a{
+      color: red;
+      font-weight: bold;
+    }
+    img {
+      height: 150px;
+    }
+    @media screen and (max-width: 768px){
+      img {
+        height: auto;
+      }
+    }
+</style>
+
+<div class="container">
+  <div class="row">
+    {% if favoriler %}
+      {% for i in favoriler %}
+
+  
+    <div class="card mb-3" style="max-width: 540px;">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src="{{ i.urun.resim.url }}" class=" rounded-start" width="100%" alt="...">
+        </div>
+        <div class="col-md-5">
+          <div class="card-body">
+            <h5 class="card-title">{{ i.urun.isim }}</h5>
+            <p class="card-text">{{ i.urun.aciklama }}</p>
+            <p class="card-text"><small class="text-muted"> {{ i.urun.fiyat }} </small></p> 
+          <div>       
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 mt-3 delete">
+          <a href="{% url 'deletefav' i.id %}">Favoriden çıkar</a>
+        </div> 
+      </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <h3 class="text-center">Favori Ürününüz Bulunmamaktadır</h3>
+  {% endif %}
+  </div>
+</div>
+
+
+
+
+{% endblock content %}
+
