@@ -1,6 +1,6 @@
 # E-Ticaret Sitesi
 
-Bu projede günümüzde en çok ihtiyaç duyulan Web sitelerden E-ticaret sitesini geliştirdim.İlk bireysel projedir. Sitede favori , sepete ekleme , sepet fiyat tutarı , search , kategori ve alt kategori gibi özellikleer bulunmaktadır.
+Bu projede günümüzde en çok ihtiyaç duyulan Web sitelerden E-ticaret sitesini geliştirdim.İlk bireysel projedir. Sitede favori , sepete ekleme , sepet fiyat tutarı , search , kategori ve alt kategori gibi özellikleer bulunmaktadır.Site tamamen responsivedir.
 
 
 ## Özellikler
